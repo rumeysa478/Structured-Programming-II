@@ -81,15 +81,15 @@
         public int numara = 10;
         public double ondalikli;
 
-        public int Sayi { get; set; } //first defining type of properties
+        public int Sayi { get; set; } //first way of defining type of properties
 
-        public int Numara
+        public int Numara //second way of defining type of properties
         {
             get { return numara; }
             set { numara = value; }
         }
 
-        public double Ondalikli
+        public double Ondalikli  //third way of defining type of properties
         {
             get => ondalikli;
             set => ondalikli = value;   
@@ -106,3 +106,4 @@
         }
     }
 }
+
