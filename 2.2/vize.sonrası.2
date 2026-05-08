@@ -1,0 +1,130 @@
+namespace vizesonrası._2
+{
+    public abstract class Vehicle()
+    {
+        public virtual void StartEngine()
+        {
+            Console.WriteLine("start engine (abstract)");
+        }
+        public abstract void CalculateFuelConsumption(); //virtual yazmaya gerek yok
+    }
+    // abstractı miras alan içini tanımlamak zorunda
+
+    internal interface IElectric
+    {
+        public void ChargeBattery()
+        {
+            Console.WriteLine("battery is charging");
+        }
+    }
+
+    public class Gear
+    {
+        public Gear()
+        {
+            Console.WriteLine("constructer of gear class");
+        }     
+    }
+
+    
+ 
+    public class ElectricCar : Vehicle, IElectric//, Gear -> hata sadece 1 tane baseden, classdan miras alabilir
+    {
+        public void ChargeBattery()
+        {
+            Console.WriteLine("the battery is charging now...");
+        }
+        public override void CalculateFuelConsumption() //abstract olduğu için tanımlamk zorundayız
+        {
+            Console.WriteLine("birim fiyat 65");
+        }
+        public override void StartEngine()
+        {
+            Console.WriteLine("start engine (override)"); //printlediğimizde bu çalışır
+        }
+    }
+    public class SecuritySystem
+    {
+        public virtual void CheckPassword()
+        {
+            Console.WriteLine(" sealed method ");
+        }
+    }
+
+    public class GradeCalculator
+    {
+        private dynamic score;
+
+        public GradeCalculator(int p_score)
+        {
+            this.score = p_score;
+            Console.WriteLine("int");
+        }
+        public GradeCalculator(double a_score)
+        {
+            this.score = a_score;
+            Console.WriteLine("double");
+        }
+        public void ShowGrade()
+        {
+            if (this.score > 60 && this.score < 61)
+            {
+                Console.WriteLine("score is double");
+            }
+            else 
+            {
+                Console.WriteLine("score is integer");
+            }
+        }
+    }
+
+    public class Animal
+    {
+        public virtual void MakeSound() { }
+    }
+    public class Cat : Animal
+    {
+        public override void MakeSound()
+        {
+            Console.WriteLine("miyav");
+        }
+    }
+    public class Dog : Animal
+    {
+        public override void MakeSound()
+        {
+            Console.WriteLine("hav");
+        }
+    }
+    public class Bird : Animal
+    {
+        public override void MakeSound()
+        {
+            Console.WriteLine("cik");
+        }
+    }
+
+    internal class Program : SecuritySystem
+    {
+        static void Main(string[] args)
+        {
+            ElectricCar car = new ElectricCar();
+            car.CalculateFuelConsumption();
+            car.ChargeBattery();
+            car.StartEngine();
+            //interface ve abstractın instancesi oluşturulamaz
+
+            GradeCalculator grade = new GradeCalculator(60);
+            grade.ShowGrade();
+
+            GradeCalculator grade1 = new GradeCalculator(60.5);
+            grade1.ShowGrade();
+        }
+
+        public override sealed void CheckPassword()
+        {
+            Console.WriteLine(" sealed method ");
+        }
+        
+    }
+}
